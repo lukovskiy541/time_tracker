@@ -188,14 +188,27 @@ function handleTextMessage(msg) {
     PropertiesService.getScriptProperties().setProperty("LAST_TEXT", rawText);
     PropertiesService.getScriptProperties().setProperty("IGNORE_COUNT", "0");
 
-    // Auto-detect language on initial start if not explicitly set
-    if (!PropertiesService.getScriptProperties().getProperty("LANG")) {
-      const userCode = (msg.from && msg.from.language_code) ? msg.from.language_code.toLowerCase() : "";
-      const detected = userCode.startsWith("en") ? "en" : DEFAULT_LANG;
-      PropertiesService.getScriptProperties().setProperty("LANG", detected);
+    if (rawText === "/start") {
+      const currentLang = PropertiesService.getScriptProperties().getProperty("LANG");
+      if (!currentLang) {
+        const langKeyboard = {
+          inline_keyboard: [
+            [
+              { text: "🇺🇦 Українська", callback_data: "lang:uk" },
+              { text: "🇬🇧 English", callback_data: "lang:en" }
+            ]
+          ]
+        };
+        sendMessage(chatId, "👋 Привіт! Оберіть мову інтерфейсу:\nHello! Choose your interface language:", langKeyboard);
+        return;
+      }
+
+      sendMessage(chatId, t().welcome);
+      sendPing();
+      return;
     }
 
-    if (rawText === "/start" || rawText === "/ping") {
+    if (rawText === "/ping") {
       sendMessage(chatId, t().welcome);
       sendPing();
       return;
@@ -275,9 +288,16 @@ function handleCallback(callback) {
 
     if (data.startsWith("lang:")) {
       const selectedLang = data.split(":")[1];
+      const isFirstSetup = !PropertiesService.getScriptProperties().getProperty("LANG");
       PropertiesService.getScriptProperties().setProperty("LANG", selectedLang);
-      const confMsg = (I18N[selectedLang] || I18N.uk).langChanged;
-      editMessage(chatId, messageId, confMsg, null);
+
+      if (isFirstSetup) {
+        editMessage(chatId, messageId, (I18N[selectedLang] || I18N.uk).welcome, null);
+        sendPing();
+      } else {
+        const confMsg = (I18N[selectedLang] || I18N.uk).langChanged;
+        editMessage(chatId, messageId, confMsg, null);
+      }
       return;
     }
 
