@@ -45,7 +45,32 @@ A lightweight, serverless Telegram bot for automated habit and activity tracking
 
 ---
 
-## 🚀 Step-by-Step Setup Guide
+## 🤖 The Easiest Way: Let an AI Agent Do It For You
+
+> [!TIP]
+> **Don't feel like clicking through Google Apps Script menus manually?**  
+> You can simply delegate the entire setup to an AI assistant or agent (Cursor, Claude, ChatGPT, Antigravity, or Copilot).
+
+Just copy and paste this prompt to your AI agent:
+
+```text
+I want to set up this Telegram Time Tracker bot:
+https://github.com/lukovskiy541/time_tracker
+
+Here is my Telegram bot token from @BotFather: <YOUR_BOT_TOKEN>
+
+Please help me deploy it:
+1. Configure Telegram_Time_Tracker_Bot.example.js with my token and timezone.
+2. Guide or automate deploying it as a Google Apps Script Web App (access: Anyone).
+3. Connect the webhook using the built-in setWebhook function.
+4. Verify everything with testSetup and trigger a test check-in.
+```
+
+Your AI can walk you through or automate the entire setup in under 2 minutes so you don't have to deal with the manual hassle!
+
+---
+
+## 🚀 Manual Step-by-Step Setup Guide
 
 ### Step 1. Create a Telegram Bot
 1. Open Telegram and search for [@BotFather](https://t.me/BotFather).
