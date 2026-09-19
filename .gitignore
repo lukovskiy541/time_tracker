@@ -1,0 +1,18 @@
+# Local bot script with credentials
+Telegram_Time_Tracker_Bot.js
+*.local.*
+*.creds.*
+.env
+.env.*
+
+# Python cache & virtual environment
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+venv/
+
+# Temporary files and logs
+*.tmp
+*.log
