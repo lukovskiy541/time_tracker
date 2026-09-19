@@ -23,6 +23,7 @@ A lightweight, serverless Telegram bot for automated habit and activity tracking
 - 📊 **Automatic Google Sheets Logging**:
   - Creates and formats a `Time Tracker Log` spreadsheet on your Google Drive automatically upon first launch.
   - Formats columns: `Date`, `Time`, `Activity`, and `Duration`.
+- 🌐 **Multilingual Support (Ukrainian & English)**: Supports `/lang` command to switch between Ukrainian 🇺🇦 and English 🇬🇧 interfaces. Naturally parses input in both languages (`coding 45m`, `диплом 1h`, `сон`, `sleep`).
 - 🔍 **Diagnostics & CLI Tool**:
   - Built-in HTTP GET diagnostic endpoint returning live JSON status and trigger health.
   - CLI script ([`scripts/check_version.py`](scripts/check_version.py)) to verify deployment status from your local terminal.
@@ -176,8 +177,9 @@ No need to concatenate URLs or use curl:
 
 ### Bot Chat Commands
 - `/start` or `/ping` — Manually trigger an immediate check-in prompt.
+- `/lang` or `/language` — Switch interface language between Ukrainian 🇺🇦 and English 🇬🇧.
 - `/version` (or `/ver`) — Display currently deployed bot version and build date.
-- Message with *"sleep"*, *"going to bed"*, or *"night"* — Triggers Sleep Mode until your scheduled morning hour.
+- Message with *"sleep"*, *"сон"*, *"going to bed"*, or *"night"* — Triggers Sleep Mode until your scheduled morning hour.
 
 ### Local Python CLI Diagnostics (Optional)
 You can optionally monitor the bot and inspect active cloud triggers directly from your terminal:

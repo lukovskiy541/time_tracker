@@ -73,8 +73,8 @@ All bot logic is intentionally self-contained within a single file to make copy-
 | :--- | :--- |
 | `doGet(e)` | Diagnostic HTTP GET endpoint. Returns live JSON status. Supports `?ping=1` to trigger an immediate ping. |
 | `doPost(e)` | Webhook receiver. Routes incoming updates to `handleTextMessage` or `handleCallback`. |
-| `handleTextMessage(msg)` | Parses text commands (`/start`, `/version`), detects sleep intents, extracts task & duration (`code 45`, `study 1h`). |
-| `handleCallback(callback)` | Processes inline keyboard actions: time adjustments (`t:15`, `t:30`), repeat task (`action:same`), bedtime (`action:sleep`). |
+| `handleTextMessage(msg)` | Parses text commands (`/start`, `/lang`, `/version`), detects sleep intents, extracts task & duration (`code 45`, `study 1h`). |
+| `handleCallback(callback)` | Processes inline keyboard actions: language switch (`lang:uk`, `lang:en`), time adjustments (`t:15`, `t:30`), repeat task (`action:same`), bedtime (`action:sleep`). |
 | `isSleepIntent(rawText)` | Natural language matching for sleep phrases (*"сон"*, *"sleep"*, *"night"*, etc.). |
 | `activateSleepMode(chatId)` | Logs sleep to sheet and schedules morning wake-up ping via `scheduleMorningPing()`. |
 | `sendPing()` | Checks `IGNORE_COUNT` (snoozes after 2 missed pings to prevent spam), formats prompt, sends interactive inline keyboard. |
